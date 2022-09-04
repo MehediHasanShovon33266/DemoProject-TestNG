@@ -1,3 +1,5 @@
+package Pages;
+
 import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -6,6 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage {
     @FindBy(className = "login")
+    public
     WebElement linkLogin;
 
     @FindBy(id = "email")
@@ -18,6 +21,7 @@ public class LoginPage {
     WebElement btnSubmit;
 
     @FindBy(className = "logout")
+    public
     WebElement linkLogout;
 
     @FindBy(xpath = "//li[contains(text(),'Authentication failed.')]")
