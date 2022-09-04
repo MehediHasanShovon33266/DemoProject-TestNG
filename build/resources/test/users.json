@@ -1,14 +1,18 @@
 [
   {
-    "email": "salman@test.com",
-    "password": "P@ssword123"
+    "password": "P@ssword123",
+    "email": "salman@test.com"
   },
   {
-    "email": "salman@test.com",
-    "password": "P@ssword"
+    "password": "P@ssword",
+    "email": "salman@test.com"
   },
   {
-    "email": "salman@test.com",
-    "password": "P@ssword1234"
+    "password": "P@ssword1234",
+    "email": "salman@test.com"
+  },
+  {
+    "password": "asdf1234",
+    "email": "testautouser86913@test.com"
   }
 ]

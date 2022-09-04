@@ -16,7 +16,8 @@ public class LoginTestRunner extends Setup {
     public void doLoginWithValidCredentials() throws IOException, ParseException {
         loginPage = new LoginPage(driver);
         utils = new Utils();
-        utils.getUserCredentials(0);
+        //utils.getUserCredentials(0);
+        utils.getUserCredentials(utils.getUserCount());
         driver.get("http://automationpractice.com/");
         boolean isLogoutFound = loginPage.doLoginWithValidCredentials(utils.getEmail(), utils.getPassword());
         Assert.assertEquals(isLogoutFound, true);
