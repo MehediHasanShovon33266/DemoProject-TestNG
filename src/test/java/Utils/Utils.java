@@ -63,4 +63,12 @@ public class Utils {
         int randomID = (int) (Math.random()*(max-min+min));
         return randomID;
     }
+
+    public int getUserCount() throws IOException, ParseException {
+        String fileName="./src/test/resources/users.json";
+        JSONParser jsonParser=new JSONParser();
+        Object obj=jsonParser.parse(new FileReader(fileName));
+        JSONArray jsonArray=(JSONArray) obj;
+        return jsonArray.size()-1;
+    }
 }
