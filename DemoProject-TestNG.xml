@@ -3,8 +3,12 @@
         <classes>
             <class name="TestRunner.SignupTestRunner"/>
         </classes>
+    </test>
+
+    <test name="E-commerce portal login">
         <classes>
             <class name="TestRunner.LoginTestRunner"/>
-        </classes >
+        </classes>
     </test>
+
 </suite>
