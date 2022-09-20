@@ -12,7 +12,7 @@ import java.io.IOException;
 public class LoginTestRunner extends Setup {
     LoginPage loginPage;
     Utils utils;
-    @Test(priority = 1)
+    @Test(priority = 2)
     public void doLoginWithValidCredentials() throws IOException, ParseException {
         loginPage = new LoginPage(driver);
         utils = new Utils();
@@ -23,9 +23,9 @@ public class LoginTestRunner extends Setup {
         Assert.assertEquals(isLogoutFound, true);
         loginPage.linkLogout.click();
     }
-    @Test(priority = 2)
+    @Test(priority = 1)
     public void doLoginWithInValidCredentials() throws IOException, ParseException {
-//        driver.get("http://automationpractice.com/");
+        //driver.get("http://automationpractice.com/");
         loginPage = new LoginPage(driver);
         utils = new Utils();
         utils.getUserCredentials(1);

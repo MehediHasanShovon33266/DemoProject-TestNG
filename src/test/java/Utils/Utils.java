@@ -11,9 +11,11 @@ import org.openqa.selenium.WebDriver;
 
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 
 public class Utils {
     private String email;
@@ -51,19 +53,23 @@ public class Utils {
         setEmail((String) jsonObject.get("email"));
         setPassword((String) jsonObject.get("password"));
     }
+    public void writeUserInfo(String email, String password) throws IOException, ParseException {
+        String fileName = "./src/test/resources/users.json";
+        JSONParser jsonParser = new JSONParser();
+        Object obj = jsonParser.parse(new FileReader(fileName));
+        JSONObject userObj = new JSONObject();
+        userObj.put("email", email);
+        userObj.put("password", password);
 
-    public void takeScreenShot(WebDriver driver) throws IOException {
-        File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        String time = new SimpleDateFormat("dd-MM-yyyy-hh-mm-ss-aa").format(new Date());
-        String fileWithPath = "./src/test/resources/screenshots/" + time + ".png";
-        File DestFile = new File(fileWithPath);
-        FileUtils.copyFile(screenshotFile, DestFile);
+        JSONArray jsonArray = (JSONArray) obj;
+        jsonArray.add(userObj);
+        FileWriter file = new FileWriter(fileName);
+        file.write(jsonArray.toJSONString());
+        file.flush();
+        file.close();
+        System.out.println("Saved!");
+        System.out.print(jsonArray);
     }
-    public int generateRandomNumber(int min, int max){
-        int randomID = (int) (Math.random()*(max-min+min));
-        return randomID;
-    }
-
     public int getUserCount() throws IOException, ParseException {
         String fileName="./src/test/resources/users.json";
         JSONParser jsonParser=new JSONParser();
@@ -71,4 +77,26 @@ public class Utils {
         JSONArray jsonArray=(JSONArray) obj;
         return jsonArray.size()-1;
     }
+    public void takeScreenShot(WebDriver driver) throws IOException {
+        File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        String time = new SimpleDateFormat("dd-MM-yyyy-hh-mm-ss-aa").format(new Date());
+        String fileWithPath = "./src/test/resources/screenshots/" + time + ".png";
+        File DestFile = new File(fileWithPath);
+        FileUtils.copyFile(screenshotFile, DestFile);
+    }
+    public String generateRandomPassword(int len) {
+        String chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghi"
+                +"jklmnopqrstuvwxyz!@#$%&";
+        Random rnd = new Random();
+        StringBuilder sb = new StringBuilder(len);
+        for (int i = 0; i < len; i++)
+            sb.append(chars.charAt(rnd.nextInt(chars.length())));
+        return sb.toString();
+    }
+    public int generateRandomNumber(int min, int max){
+        int randomID = (int) (Math.random()*(max-min+min));
+        return randomID;
+    }
+
+
 }

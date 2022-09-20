@@ -11,4 +11,10 @@
         </classes>
     </test>
 
+    <test name="E-commerce portal Order">
+        <classes>
+            <class name="TestRunner.OrderTestRunner"/>
+        </classes>
+    </test>
+
 </suite>
